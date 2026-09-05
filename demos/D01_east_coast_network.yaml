@@ -1,0 +1,198 @@
+id: D01
+name: East-coast greenfield network — 5 candidate sites, 3 markets, 5 periods
+description: 'ILLUSTRATIVE DEMO — geography is real, economics are plausible public-knowledge figures,
+  not client data. Greenfield: every site starts at zero capacity and is built in discrete 250 kt/yr units.
+  Question: which sites, what size, and when, to serve Brisbane/Sydney/Melbourne demand at minimum NPV
+  cost.'
+units:
+  mass: t
+  currency: USD
+  energy: MWh
+  time: period
+periods:
+- t1
+- t2
+- t3
+- t4
+- t5
+discount_rate: 0.1
+sites:
+- id: Gladstone
+  production_cost: 335
+  fixed_cost: 28000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 165000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -23.85
+  lon: 151.26
+  provenance:
+    production_cost:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+    expansion_capex:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+- id: Townsville
+  production_cost: 328
+  fixed_cost: 26000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 160000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -19.26
+  lon: 146.82
+  provenance:
+    production_cost:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+    expansion_capex:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+- id: Newcastle
+  production_cost: 372
+  fixed_cost: 34000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 190000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -32.93
+  lon: 151.78
+  provenance:
+    production_cost:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+    expansion_capex:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+- id: PortKembla
+  production_cost: 378
+  fixed_cost: 35000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 195000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -34.48
+  lon: 150.9
+  provenance:
+    production_cost:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+    expansion_capex:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+- id: Geelong
+  production_cost: 366
+  fixed_cost: 33000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 185000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -38.15
+  lon: 144.36
+  provenance:
+    production_cost:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+    expansion_capex:
+      source: illustrative public-knowledge estimate
+      as_of: '2026-06-30'
+customers:
+- id: Brisbane
+  demand:
+    t1: 380000
+    t2: 395000
+    t3: 411000
+    t4: 427000
+    t5: 444000
+  lat: -27.47
+  lon: 153.03
+- id: Sydney
+  demand:
+    t1: 610000
+    t2: 634000
+    t3: 660000
+    t4: 686000
+    t5: 713000
+  lat: -33.87
+  lon: 151.21
+- id: Melbourne
+  demand:
+    t1: 540000
+    t2: 562000
+    t3: 584000
+    t4: 607000
+    t5: 632000
+  lat: -37.81
+  lon: 144.96
+routes:
+- from: Gladstone
+  to: Brisbane
+  cost: 40.54
+  distance_km: 563
+- from: Gladstone
+  to: Sydney
+  cost: 102.67
+  distance_km: 1426
+- from: Gladstone
+  to: Melbourne
+  cost: 153.29
+  distance_km: 2129
+- from: Townsville
+  to: Brisbane
+  cost: 102.38
+  distance_km: 1422
+- from: Townsville
+  to: Sydney
+  cost: 155.02
+  distance_km: 2153
+- from: Townsville
+  to: Melbourne
+  cost: 190.8
+  distance_km: 2650
+- from: Newcastle
+  to: Brisbane
+  cost: 57.02
+  distance_km: 792
+- from: Newcastle
+  to: Sydney
+  cost: 10.8
+  distance_km: 150
+- from: Newcastle
+  to: Melbourne
+  cost: 75.74
+  distance_km: 1052
+- from: PortKembla
+  to: Brisbane
+  cost: 74.23
+  distance_km: 1031
+- from: PortKembla
+  to: Sydney
+  cost: 6.77
+  distance_km: 94
+- from: PortKembla
+  to: Melbourne
+  cost: 59.83
+  distance_km: 831
+- from: Geelong
+  to: Brisbane
+  cost: 132.34
+  distance_km: 1838
+- from: Geelong
+  to: Sydney
+  cost: 71.71
+  distance_km: 996
+- from: Geelong
+  to: Melbourne
+  cost: 5.98
+  distance_km: 83
+expected:
+  status: optimal
+  check: objective_only
+  objective: null
+  tolerance: 0.0001
