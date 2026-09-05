@@ -1,0 +1,19 @@
+id: G17
+name: Impossible transport distance — shorter than great-circle
+description: |
+  Gladstone (-23.85, 151.26) to Brisbane (-27.47, 153.03) is ~440 km great-circle.
+  A stated road distance of 300 km is physically impossible -> BLOCKER.
+  A second route at 2,600 km (2.4× the ~1,100 km great-circle) is implausible -> MAJOR.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: Gladstone, production_cost: 100, base_capacity: 1000, lat: -23.85, lon: 151.26}
+  - {id: Townsville, production_cost: 100, base_capacity: 1000, lat: -19.26, lon: 146.82}
+customers:
+  - {id: Brisbane, demand: {t1: 100}, lat: -27.47, lon: 153.03}
+routes:
+  - {from: Gladstone, to: Brisbane, cost: 10, distance_km: 300}
+  - {from: Townsville, to: Brisbane, cost: 30, distance_km: 2600}
+expected:
+  status: dq_blocked
+  dq: {gate: false, findings_include: [geo.distance_below_great_circle, geo.distance_implausible]}

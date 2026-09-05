@@ -1,0 +1,18 @@
+id: G11
+name: Discounting — second period costs are divided by (1+r)
+description: |
+  Identical demand in two periods, r = 10%. Objective = 11,000 + 11,000/1.1 = 21,000.
+  Catches a discount-factor indexing error (off-by-one period) immediately.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1, t2]
+discount_rate: 0.10
+sites:
+  - {id: A, production_cost: 100, base_capacity: 1000}
+customers:
+  - {id: C1, demand: {t1: 100, t2: 100}}
+routes:
+  - {from: A, to: C1, cost: 10}
+expected:
+  status: optimal
+  objective: 21000
+  tolerance: 1.0e-6

@@ -1,0 +1,21 @@
+id: G03a
+name: Plant-opening economics — low demand favours low fixed cost
+description: |
+  A: fixed 2,000, variable 100/t. B: fixed 500, variable 120/t. Transport 10/t. Demand 50.
+  A alone: 2,000 + 50×110 = 7,500. B alone: 500 + 50×130 = 7,000. Both open: worse.
+  Expected: open B only. Objective 7,000.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, fixed_cost: 2000, base_capacity: 100}
+  - {id: B, production_cost: 120, fixed_cost: 500,  base_capacity: 100}
+customers:
+  - {id: C1, demand: {t1: 50}}
+routes:
+  - {from: A, to: C1, cost: 10}
+  - {from: B, to: C1, cost: 10}
+expected:
+  status: optimal
+  objective: 7000
+  production: {A: {t1: 0}, B: {t1: 50}}
+  open: {A: {t1: 0}, B: {t1: 1}}

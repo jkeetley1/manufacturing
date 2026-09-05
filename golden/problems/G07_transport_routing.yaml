@@ -1,0 +1,26 @@
+id: G07
+name: Transport cost drives assignment
+description: |
+  Identical plants, two customers. Each plant is near one customer (5/t) and far from the other (20/t).
+  Expected: A serves C1, B serves C2. Objective 200×100 + 200×5 = 21,000.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 1000}
+  - {id: B, production_cost: 100, base_capacity: 1000}
+customers:
+  - {id: C1, demand: {t1: 100}}
+  - {id: C2, demand: {t1: 100}}
+routes:
+  - {from: A, to: C1, cost: 5}
+  - {from: A, to: C2, cost: 20}
+  - {from: B, to: C1, cost: 20}
+  - {from: B, to: C2, cost: 5}
+expected:
+  status: optimal
+  objective: 21000
+  shipments:
+    - {from: A, to: C1, period: t1, qty: 100}
+    - {from: A, to: C2, period: t1, qty: 0}
+    - {from: B, to: C1, period: t1, qty: 0}
+    - {from: B, to: C2, period: t1, qty: 100}

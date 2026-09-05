@@ -1,0 +1,33 @@
+# CONTROLLED MODEL ASSUMPTIONS — version-controlled, human-approved.
+# PLATFORM STARTER SET — illustrative only. Each client tenant holds its own
+# authoritative copy; no material result is issued until the tenant approves theirs.
+# Agents may PROPOSE changes by drafting an entry in assumption_change_log.md.
+# No agent may edit this file. Every run records the version it used.
+version: 1
+as_of: 2026-09-05
+approved_by: "<pending>"
+
+economics:
+  discount_rate:            {value: 0.10,  unit: fraction/yr,  source: "<pending>", as_of: 2026-09-05}
+  hurdle_rate:              {value: null,  unit: fraction/yr,  source: "<pending>"}
+  tax_rate:                 {value: null,  unit: fraction,     source: "<pending>"}
+  cost_escalation:          {value: null,  unit: fraction/yr,  source: "<pending>"}
+  carbon_cost:              {value: null,  unit: USD/tCO2e,    source: "<pending>"}
+  exchange_rates:
+    AUD_per_USD:            {value: null,  source: "<pending>", as_of: null}
+
+plant:
+  plant_life_years:         {value: 20,    unit: yr,           source: "<pending>"}
+  minimum_utilisation:      {value: null,  unit: fraction,     source: "<pending>"}
+  expansion_unit_ktpa:      {value: 100,   unit: kt/yr,        source: "Requirement: discrete 100 ktpa increments"}
+
+prices:                     # commodity / product prices, energy costs -> by commodity, by period
+  product_price:            {value: null,  unit: USD/t,        source: "<pending>"}
+  electricity:              {value: null,  unit: USD/MWh,      source: "<pending>"}
+
+demand:
+  forecast_id:              null          # reference to a versioned demand forecast dataset
+  growth_rate:              {value: null,  unit: fraction/yr,  source: "<pending>"}
+
+capex:
+  curve_id:                 null          # reference to a versioned capex assumption set

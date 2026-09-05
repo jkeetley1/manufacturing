@@ -1,0 +1,28 @@
+# Task record — one per requirement. Authored by the human/product owner;
+# MATHEMATICAL REQUIREMENT and ACCEPTANCE TESTS are filled in by the Optimisation Scientist.
+task_id: OPT-143
+title: Site maximum permitted plant capacity
+source: Approved product requirement (ref PRD-2026-09-02)
+business_requirement: >
+  Allow candidate sites to have a maximum permitted plant capacity.
+expected_behaviour: >
+  Plant capacity must never exceed the site maximum in any period.
+
+# ---- Filled by Optimisation Scientist -----------------------------------
+spec_version: 1.4
+mathematical_requirement: |
+  Capacity[i,t] <= SiteMaxCapacity[i] * Open[i,t]        for all i in I, t in T
+  where Capacity[i,t] = BaseCapacity[i] + Unit[i] * ExpansionUnits[i,t]
+acceptance_tests:
+  - golden_problem: G04
+    setup: Single candidate site, site max 500 ktpa, demand 900 ktpa.
+    expected: >
+      Model reports INFEASIBLE with a diagnosis naming the capacity shortfall.
+      It must NOT produce 900 ktpa from the site.
+  - golden_problem: G09
+    setup: Site max blocks the integer expansion needed.
+    expected: INFEASIBLE by constraint interaction; diagnosis says an IIS is required.
+
+# ---- Governance ----------------------------------------------------------
+material: true            # touches capacity logic -> human approval at GATE 4
+requires_human_decision: []

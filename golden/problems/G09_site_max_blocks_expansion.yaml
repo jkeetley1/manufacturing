@@ -1,0 +1,19 @@
+id: G09
+name: Site maximum blocks the expansion needed — infeasible by interaction
+description: |
+  Base 100, unit 100, site max 250, demand 250. One unit gives 200 (< 250 demand);
+  two units give 300 (> 250 site max). No integer solution exists.
+  Structural checks alone cannot see this (nominal capacity 250 ≥ demand 250):
+  the model must still fail correctly and say why it cannot say more.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 100, expansion_unit: 100,
+     expansion_capex: 1000, max_expansion_units: 5, site_max_capacity: 250}
+customers:
+  - {id: C1, demand: {t1: 250}}
+routes:
+  - {from: A, to: C1, cost: 10}
+expected:
+  status: infeasible
+  diagnosis_contains: "IIS"

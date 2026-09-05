@@ -1,0 +1,17 @@
+id: G12
+name: Zero demand — build nothing, spend nothing
+description: |
+  Demand is zero and the plant has a fixed cost. The only optimal answer is to leave it closed.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, fixed_cost: 500, base_capacity: 1000}
+customers:
+  - {id: C1, demand: {t1: 0}}
+routes:
+  - {from: A, to: C1, cost: 10}
+expected:
+  status: optimal
+  objective: 0
+  production: {A: {t1: 0}}
+  open: {A: {t1: 0}}

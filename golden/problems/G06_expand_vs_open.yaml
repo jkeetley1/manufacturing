@@ -1,0 +1,25 @@
+id: G06
+name: Expand existing plant vs open a second plant
+description: |
+  A: base 100, unit 100, capex 5,000/unit, variable 100. B: fixed 3,000, base 200, variable 105.
+  Transport 10 each. Demand 250.
+  Expand A by 2: 10,000 + 250×110 = 37,500.
+  Open B: 3,000 + 100×110 + 150×115 = 31,250.  <- optimal
+  Expand A by 1 and open B: 5,000 + 3,000 + ... worse.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 100, expansion_unit: 100,
+     expansion_capex: 5000, max_expansion_units: 5}
+  - {id: B, production_cost: 105, fixed_cost: 3000, base_capacity: 200}
+customers:
+  - {id: C1, demand: {t1: 250}}
+routes:
+  - {from: A, to: C1, cost: 10}
+  - {from: B, to: C1, cost: 10}
+expected:
+  status: optimal
+  objective: 31250
+  production: {A: {t1: 100}, B: {t1: 150}}
+  open: {A: {t1: 1}, B: {t1: 1}}
+  expansion_units: {A: {t1: 0}, B: {t1: 0}}

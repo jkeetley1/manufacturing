@@ -1,0 +1,20 @@
+id: G05
+name: Discrete expansion units — must round up, never fractional
+description: |
+  Base 100 t, expansion unit 100 t, capex 1,000/unit. Demand 250.
+  Continuous relaxation would buy 1.5 units. Integer model must buy 2 (capacity 300).
+  Objective: 2×1,000 + 250×110 = 29,500.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 100, expansion_unit: 100,
+     expansion_capex: 1000, max_expansion_units: 5}
+customers:
+  - {id: C1, demand: {t1: 250}}
+routes:
+  - {from: A, to: C1, cost: 10}
+expected:
+  status: optimal
+  objective: 29500
+  production: {A: {t1: 250}}
+  expansion_units: {A: {t1: 2}}

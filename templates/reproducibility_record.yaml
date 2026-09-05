@@ -1,0 +1,27 @@
+# Reproducibility Record — attached to every material optimisation result.
+run_id:
+timestamp_utc:
+model_version:            # e.g. platform-2.3.1
+model_hash:               # hash of formulation source
+spec_version:             # Mathematical Specification version
+data_version:             # dataset id
+data_hash:
+controlled_assumptions_version:
+data_quality_report:      # path or id; gate must be PASS
+solver:
+solver_version:
+configuration:
+  mip_rel_gap:
+  time_limit_s:
+  threads:
+  random_seed:
+  other_options: {}
+hardware:                 # CPU model, RAM — MILP results can vary with threads/hardware
+optimisation_gap:         # achieved
+objective:
+runtime_s:
+solution_file:            # full primal solution, retained
+input_assumptions:        # snapshot of every controlled assumption used
+near_ties:                # list of alternatives within gap, if any
+explanation_report:       # id, when produced
+approved_by:              # human, for material decisions

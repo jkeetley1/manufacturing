@@ -1,0 +1,22 @@
+id: G10
+name: Multi-period expansion — install late, never uninstall
+description: |
+  Demand 100 / 250 / 150 over three periods. Base 100, unit 100, capex 1,000/unit, r = 10%.
+  Two units are needed in t2. With discounting, installing in t2 beats installing in t1.
+  Capacity cannot shrink in t3 (no decommissioning in scope).
+  Objective = 100×110 + (2,000 + 250×110)/1.1 + (150×110)/1.21 = 51,454.5455.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1, t2, t3]
+discount_rate: 0.10
+sites:
+  - {id: A, production_cost: 100, base_capacity: 100, expansion_unit: 100,
+     expansion_capex: 1000, max_expansion_units: 5}
+customers:
+  - {id: C1, demand: {t1: 100, t2: 250, t3: 150}}
+routes:
+  - {from: A, to: C1, cost: 10}
+expected:
+  status: optimal
+  objective: 51454.5455
+  tolerance: 1.0e-3
+  expansion_units: {A: {t1: 0, t2: 2, t3: 2}}

@@ -1,0 +1,21 @@
+id: G19
+name: Zero-cost arc — the solver WILL exploit it; the Data Auditor must warn
+description: |
+  B is the dearer plant but has a zero-cost route. Solver correctly (mathematically) uses A anyway
+  here because A+transport 110 < B 120 — but the DQ report must still carry a MAJOR
+  loophole warning so a human sees the exposure before the data grows.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 1000}
+  - {id: B, production_cost: 120, base_capacity: 1000}
+customers:
+  - {id: C1, demand: {t1: 100}}
+routes:
+  - {from: A, to: C1, cost: 10}
+  - {from: B, to: C1, cost: 0}
+expected:
+  status: optimal
+  objective: 11000
+  production: {A: {t1: 100}, B: {t1: 0}}
+  dq: {gate: true, max_score: 90, findings_include: [loophole.zero_cost_arc]}

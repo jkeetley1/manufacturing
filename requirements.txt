@@ -1,0 +1,6 @@
+# Requires Python >=3.10,<3.13 (highspy binary wheels; 3.14 has no wheels and
+# source builds need a C++ toolchain). See assumption_change_log.md entry 4.
+pyomo>=6.7
+highspy>=1.7,<1.16
+pyyaml>=6.0
+pytest>=7.0

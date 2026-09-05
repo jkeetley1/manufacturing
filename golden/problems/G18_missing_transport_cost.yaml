@@ -1,0 +1,19 @@
+id: G18
+name: Missing transport cost — must not default to zero
+description: |
+  The classic loophole: a route with no cost. If the loader defaulted it to 0 the solver
+  would route everything through it. Loader must preserve the null; DQ must block; model must refuse.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 1000}
+  - {id: B, production_cost: 120, base_capacity: 1000}
+customers:
+  - {id: C1, demand: {t1: 100}}
+routes:
+  - {from: A, to: C1, cost: 10}
+  - {from: B, to: C1}
+expected:
+  status: data_error
+  error_contains: "missing transport cost"
+  dq: {gate: false, findings_include: [value.missing]}

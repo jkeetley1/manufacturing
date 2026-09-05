@@ -1,0 +1,20 @@
+id: G08
+name: Tied optima — check objective only
+description: |
+  Two identical plants. Any split of 100 t is optimal. Objective 11,000.
+  The solution itself is arbitrary; a golden test must never assert on it.
+  The Decision Explainer must flag this as a near-tie, not present it as a decision.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 1000}
+  - {id: B, production_cost: 100, base_capacity: 1000}
+customers:
+  - {id: C1, demand: {t1: 100}}
+routes:
+  - {from: A, to: C1, cost: 10}
+  - {from: B, to: C1, cost: 10}
+expected:
+  status: optimal
+  check: objective_only
+  objective: 11000

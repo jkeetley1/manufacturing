@@ -1,0 +1,18 @@
+id: G16
+name: Demand node with no inbound route — infeasible with the right diagnosis
+description: |
+  C2 has demand but no route serves it. An absent arc is forbidden, not free.
+  Data Auditor blocks; if run anyway, the model must say which customer is unserved.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, base_capacity: 1000}
+customers:
+  - {id: C1, demand: {t1: 100}}
+  - {id: C2, demand: {t1: 50}}
+routes:
+  - {from: A, to: C1, cost: 10}
+expected:
+  status: infeasible
+  diagnosis_contains: "'C2' has demand but no inbound route"
+  dq: {gate: false, findings_include: [completeness.customer_unrouted]}

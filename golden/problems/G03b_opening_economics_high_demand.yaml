@@ -1,0 +1,21 @@
+id: G03b
+name: Plant-opening economics — high demand favours low variable cost
+description: |
+  Same plants as G03a, demand 100.
+  A alone: 2,000 + 100×110 = 13,000. B alone: 500 + 100×130 = 13,500.
+  Expected: open A only. Objective 13,000. Break-even demand is 75 t.
+units: {mass: t, currency: USD, energy: MWh, time: period}
+periods: [t1]
+sites:
+  - {id: A, production_cost: 100, fixed_cost: 2000, base_capacity: 100}
+  - {id: B, production_cost: 120, fixed_cost: 500,  base_capacity: 100}
+customers:
+  - {id: C1, demand: {t1: 100}}
+routes:
+  - {from: A, to: C1, cost: 10}
+  - {from: B, to: C1, cost: 10}
+expected:
+  status: optimal
+  objective: 13000
+  production: {A: {t1: 100}, B: {t1: 0}}
+  open: {A: {t1: 1}, B: {t1: 0}}
