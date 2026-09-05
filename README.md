@@ -15,6 +15,16 @@ Controlled repository for the agent team defined in `SPEC.md`.
 | `reference/assumption_change_log.md` | Every change to a controlled artefact needs an entry | **yes** |
 | `tools/` | CI scripts (golden-problem runner) | no |
 
+## Running the roles in Claude Code
+
+Open this repository in Claude Code and the five roles are available as
+subagents (defined in `.claude/agents/`), each locked to its system prompt in
+`agents/` and to the separation of powers: the Auditor, Data Auditor and
+Explainer have no edit tools; the Engineer is forbidden from controlled paths;
+the Scientist owns the reference model. Slash commands: `/audit <branch>`
+(two-stage audit), `/dq <file>` (data quality report), `/golden` (run the
+suite). Completed packets are filed in `packets/`.
+
 ## Rules enforced by this repo
 1. `main` is protected: pull requests only, one approval, green CI.
 2. Any change under `assumptions/`, `reference_ranges/` or `golden_problems/` requires Auditor approval (CODEOWNERS) and a `reference/assumption_change_log.md` entry (CI check).

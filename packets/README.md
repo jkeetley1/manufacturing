@@ -1,0 +1,1 @@
+Role packets (Math Spec, Change, Audit Findings, DQ, Explanation) are filed here, one file per packet, named `<TYPE>-<task>-<n>.md`, e.g. `ECP-OPT-143-1.md`. Templates are in `templates/` and must not be overwritten.
