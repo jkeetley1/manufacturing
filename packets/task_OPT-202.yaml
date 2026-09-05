@@ -1,0 +1,14 @@
+task_id: OPT-202
+title: Distribution layer — delivery solutions, service radius, fleet sizing
+source: Product direction 2026-09-06 (JK): "include distribution and number of delivery solutions; match the Asahi demo"
+business_requirement: >
+  Serve delivery zones (not state centroids) through selectable delivery solutions (own fleet, 3PL,
+  retailer DC) with service radii; size own fleets per DC; allow single-sourcing policies.
+expected_behaviour: >
+  Spec 2.0 problems unchanged. New lanes carry a channel; forbidden beyond radius; integer vehicles
+  per DC; lane activation fees; optional max_channels per zone; number of delivery solutions is an output.
+spec_version: 2.1
+mathematical_requirement: see packets/MSP-OPT-202.md sections 5-6
+acceptance_tests: [G27 1800/2 vehicles, G28 2310 mixed channels, G29 1900 radius, G30 2000 single-source, G31 1900 split, regression G01-G26]
+material: true
+requires_human_decision: [GATE 1 approval; zone granularity 12; three channels; illustrative fleet economics]
