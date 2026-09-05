@@ -1,0 +1,63 @@
+task_id: OPT-203
+title: Road quality and congestion factors, plus a GIS results panel
+status: DRAFT — awaiting GATE 1 (Optimisation Scientist to write MSP-OPT-203 first)
+source: Product direction 2026-09-06 (JK)
+
+business_requirement: >
+  Reflect road quality and time-varying traffic in delivery economics, and display results on an
+  interactive map (heat maps over delivery zones) rather than a static plot, so a network planner
+  can see WHERE cost and fleet burden fall and in what ORDER the network should transition.
+
+# ---- Scope decisions taken up front (Scientist to confirm in MSP) --------------
+in_scope:
+  - road_quality_factor per DC->zone lane: multiplies transport cost per tonne and DIVIDES
+    tonnes_per_vehicle (a rough lane costs more and yields fewer trips). Declared per lane,
+    dimensionless, default 1.0.
+  - congestion_factor per lane PER PERIOD: same two effects, time-varying. Default 1.0.
+  - rollout phasing as an explicit deliverable: for each zone, which DC and which delivery
+    solution serves it in each period, and the order in which zones migrate. This is READ OUT
+    of the existing multi-period solution; only a transition cost term would be new mathematics.
+  - GIS panel in demos/demo_colab.ipynb (Folium/Leaflet, renders inline in Colab):
+      * basemap + toggleable layers
+      * choropleth / heat map over delivery zones for: delivered cost per tonne, vehicles
+        required, dominant delivery solution, period-by-period phasing
+      * DC and plant markers; lane polylines weighted by volume
+      * a period slider or one layer per period
+
+out_of_scope:
+  - Drop-level vehicle routing (which stop first). This is a different problem class (VRP) at a
+    different time scale; Spec 2.1 approximation A4 already records why. Record the refusal and
+    its failure mode; route sequencing belongs to a downstream routing tool.
+  - Real-time traffic APIs. Factors are declared inputs with provenance, not live feeds.
+
+# ---- Data honesty (non-negotiable, per 00_common_rules) ------------------------
+data_rules:
+  - Road quality and congestion values in the demo datasets are ILLUSTRATIVE analyst estimates
+    unless a real source is supplied. Each carries source + as_of in provenance.
+  - Data Auditor must gain: plausibility bands for road_quality_factor and congestion_factor
+    (propose 0.5-3.0, MAJOR outside), a BLOCKER for factor <= 0, and a MAJOR when a factor is
+    undated or older than max_age_days.
+  - Bands are a controlled artefact: propose via reference/assumption_change_log.md, never edit
+    reference_ranges.yaml directly.
+
+acceptance_tests_required:
+  - a golden problem where road quality alone flips the chosen delivery solution
+  - a golden problem where congestion in one period alone changes the fleet count in that period
+  - a golden problem proving factors default to 1.0 and reproduce Spec 2.1 exactly (migration)
+  - regression: G01-G31 unchanged
+
+material: true
+requires_human_decision:
+  - GATE 1 approval of MSP-OPT-203
+  - source for road quality / congestion, or acceptance of illustrative values
+  - zone boundary geometry for choropleths (real shapefiles vs. convex hulls) — affects nothing
+    mathematical, only the display
+
+# ---- Pipeline (who does what next) --------------------------------------------
+pipeline:
+  1: Optimisation Scientist  -> MSP-OPT-203 (mathematics + hand-solved golden problems) -> GATE 1
+  2: Agent Engineer          -> implementation + ECP-OPT-203, baseline and regression first
+  3: Agent Auditor           -> stage-1 expectation BEFORE reading the packet, then AFP-OPT-203
+  4: Data Auditor            -> bands and provenance rules for the new factors
+  5: Decision Explainer      -> phasing narrative: which zones move when, and why, cited to re-solves
+  6: Human                   -> GATE 4 merge
