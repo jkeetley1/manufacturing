@@ -1,5 +1,11 @@
 # Demo cases — illustrative, NOT controlled artefacts
 
+## ▶ Try it in your browser — no programming, nothing to install
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jkeetley1/manufacturing/blob/main/demos/demo_colab.ipynb)
+
+Click the badge, then **Runtime → Run all** (accept the warning). Scroll down for the
+network map, then move the sliders in section 4 and press ▶ on that cell to re-solve.
+
 These are showcase datasets for demonstrating the platform end to end. Real
 geography, plausible public-knowledge economics, no client data. They are not
 golden problems: they carry `check: objective_only` with no asserted value and
