@@ -1,0 +1,230 @@
+id: D02
+name: Asahi-inspired east-coast DC network — 6 candidate sites, 3 markets, 5 periods
+description: 'Grounded in Asahi Beverages'' PUBLIC three-DC national program (Deer Park VIC under way; Redbank QLD
+  $150M, operational 2028; third Sydney DC announced) and its published manufacturing footprint (Yatala, Wulkuraka
+  QLD; Laverton, Tullamarine, Abbotsford VIC). Locations and program facts are public; ALL volumes and unit costs
+  are illustrative analyst estimates and are NOT Asahi data. Decision modelled: which DCs to build, at what capacity,
+  when, to serve east-coast demand at minimum NPV cost. Single-echelon simplification: inbound plant->DC freight
+  is folded into each DC''s per-tonne cost (VIC cheapest: three co-located plants; NSW dearest: no local manufacturing).
+  A two-echelon formulation is a Spec amendment for the Optimisation Scientist.'
+units:
+  mass: t
+  currency: USD
+  energy: MWh
+  time: period
+periods:
+- t1
+- t2
+- t3
+- t4
+- t5
+discount_rate: 0.1
+sites:
+- id: Redbank_QLD
+  production_cost: 61
+  fixed_cost: 13000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 50000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -27.6
+  lon: 152.87
+  provenance:
+    production_cost:
+      source: ILLUSTRATIVE estimate by analyst — Asahi does not publish this; requires tenant validation
+      as_of: '2026-09-05'
+    expansion_capex:
+      source: scaled from public $150M Redbank capex (theshout.com.au 2026-06-12; goodman.com 2026-06-14); ILLUSTRATIVE estimate — requires tenant validation
+      as_of: '2026-09-05'
+- id: Yatala_QLD
+  production_cost: 59
+  fixed_cost: 12000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 52000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -27.88
+  lon: 153.22
+  provenance:
+    production_cost:
+      source: ILLUSTRATIVE estimate by analyst — Asahi does not publish this; requires tenant validation
+      as_of: '2026-09-05'
+    expansion_capex:
+      source: scaled from public $150M Redbank capex (theshout.com.au 2026-06-12; goodman.com 2026-06-14); ILLUSTRATIVE estimate — requires tenant validation
+      as_of: '2026-09-05'
+- id: KempsCreek_NSW
+  production_cost: 74
+  fixed_cost: 15000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 55000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -33.88
+  lon: 150.78
+  provenance:
+    production_cost:
+      source: ILLUSTRATIVE estimate by analyst — Asahi does not publish this; requires tenant validation
+      as_of: '2026-09-05'
+    expansion_capex:
+      source: scaled from public $150M Redbank capex (theshout.com.au 2026-06-12; goodman.com 2026-06-14); ILLUSTRATIVE estimate — requires tenant validation
+      as_of: '2026-09-05'
+- id: Moorebank_NSW
+  production_cost: 76
+  fixed_cost: 16000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 56000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -33.95
+  lon: 150.94
+  provenance:
+    production_cost:
+      source: ILLUSTRATIVE estimate by analyst — Asahi does not publish this; requires tenant validation
+      as_of: '2026-09-05'
+    expansion_capex:
+      source: scaled from public $150M Redbank capex (theshout.com.au 2026-06-12; goodman.com 2026-06-14); ILLUSTRATIVE estimate — requires tenant validation
+      as_of: '2026-09-05'
+- id: DeerPark_VIC
+  production_cost: 57
+  fixed_cost: 12000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 50000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -37.77
+  lon: 144.77
+  provenance:
+    production_cost:
+      source: ILLUSTRATIVE estimate by analyst — Asahi does not publish this; requires tenant validation
+      as_of: '2026-09-05'
+    expansion_capex:
+      source: scaled from public $150M Redbank capex (theshout.com.au 2026-06-12; goodman.com 2026-06-14); ILLUSTRATIVE estimate — requires tenant validation
+      as_of: '2026-09-05'
+- id: Truganina_VIC
+  production_cost: 58
+  fixed_cost: 12000000.0
+  base_capacity: 0
+  expansion_unit: 250000
+  expansion_capex: 50000000.0
+  max_expansion_units: 4
+  site_max_capacity: 1000000
+  lat: -37.83
+  lon: 144.74
+  provenance:
+    production_cost:
+      source: ILLUSTRATIVE estimate by analyst — Asahi does not publish this; requires tenant validation
+      as_of: '2026-09-05'
+    expansion_capex:
+      source: scaled from public $150M Redbank capex (theshout.com.au 2026-06-12; goodman.com 2026-06-14); ILLUSTRATIVE estimate — requires tenant validation
+      as_of: '2026-09-05'
+customers:
+- id: SEQld_Brisbane
+  demand:
+    t1: 620000
+    t2: 632000
+    t3: 645000
+    t4: 658000
+    t5: 671000
+  lat: -27.47
+  lon: 153.03
+- id: NSW_Sydney
+  demand:
+    t1: 810000
+    t2: 826000
+    t3: 843000
+    t4: 860000
+    t5: 877000
+  lat: -33.87
+  lon: 151.21
+- id: VIC_Melbourne
+  demand:
+    t1: 730000
+    t2: 745000
+    t3: 760000
+    t4: 775000
+    t5: 790000
+  lat: -37.81
+  lon: 144.96
+routes:
+- from: Redbank_QLD
+  to: SEQld_Brisbane
+  cost: 3.0
+  distance_km: 27
+- from: Redbank_QLD
+  to: NSW_Sydney
+  cost: 73.2
+  distance_km: 915
+- from: Redbank_QLD
+  to: VIC_Melbourne
+  cost: 138.64
+  distance_km: 1733
+- from: Yatala_QLD
+  to: SEQld_Brisbane
+  cost: 5.04
+  distance_km: 63
+- from: Yatala_QLD
+  to: NSW_Sydney
+  cost: 70.96
+  distance_km: 887
+- from: Yatala_QLD
+  to: VIC_Melbourne
+  cost: 137.84
+  distance_km: 1723
+- from: KempsCreek_NSW
+  to: SEQld_Brisbane
+  cost: 76.24
+  distance_km: 953
+- from: KempsCreek_NSW
+  to: NSW_Sydney
+  cost: 4.08
+  distance_km: 51
+- from: KempsCreek_NSW
+  to: VIC_Melbourne
+  cost: 69.92
+  distance_km: 874
+- from: Moorebank_NSW
+  to: SEQld_Brisbane
+  cost: 76.56
+  distance_km: 957
+- from: Moorebank_NSW
+  to: NSW_Sydney
+  cost: 3.0
+  distance_km: 34
+- from: Moorebank_NSW
+  to: VIC_Melbourne
+  cost: 70.48
+  distance_km: 881
+- from: DeerPark_VIC
+  to: SEQld_Brisbane
+  cost: 141.36
+  distance_km: 1767
+- from: DeerPark_VIC
+  to: NSW_Sydney
+  cost: 74.16
+  distance_km: 927
+- from: DeerPark_VIC
+  to: VIC_Melbourne
+  cost: 3.0
+  distance_km: 25
+- from: Truganina_VIC
+  to: SEQld_Brisbane
+  cost: 142.08
+  distance_km: 1776
+- from: Truganina_VIC
+  to: NSW_Sydney
+  cost: 74.8
+  distance_km: 935
+- from: Truganina_VIC
+  to: VIC_Melbourne
+  cost: 3.0
+  distance_km: 25
+expected:
+  status: optimal
+  check: objective_only
+  objective: null
+  tolerance: 0.0001
