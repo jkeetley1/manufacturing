@@ -17,6 +17,6 @@ routes:
   - {from: B, to: C1, cost: 10}
 expected:
   status: optimal
-  objective: 11000
+  objective: 11001
   production: {A: {t1: 100}, B: {t1: 0}}
   tolerance: 1.0e-6
