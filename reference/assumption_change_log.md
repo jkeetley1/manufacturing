@@ -12,3 +12,4 @@ Every change to `controlled_assumptions.yaml`, `reference_ranges.yaml`, or any g
 <!-- Example of a real entry:
 | 5 | 2026-10-12 | demand.growth_rate | 3.0 % | 5.5 % | Jeff | A. Chen | Updated market study MS-2026-07 |
 -->
+| 5 | 2026-09-05 | golden/problems/G01_cheapest_plant.yaml | objective 11001 (tampered via PR #1, merged in error under admin bypass) | objective 11000 (hand solution restored) | jkeetley1 | jkeetley1 | Revert of control-test tamper; incident logged, PR #3 |
