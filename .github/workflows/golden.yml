@@ -20,7 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run golden problems against reference ranges
-        run: python tools/run_golden.py --problems golden_problems --ranges reference_ranges
+        run: python -m pytest golden/ -q
 
   changelog:
     name: changelog-required
@@ -36,9 +36,9 @@ jobs:
           head="${{ github.event.pull_request.head.sha }}"
           changed=$(git diff --name-only "$base" "$head")
           echo "$changed"
-          if echo "$changed" | grep -qE '^(assumptions|reference_ranges|golden_problems)/'; then
-            if ! echo "$changed" | grep -qx 'CHANGELOG.md'; then
-              echo "::error::Controlled artefact changed without a CHANGELOG.md entry."
+          if echo "$changed" | grep -qE '^(reference/controlled_assumptions\.yaml|reference/reference_ranges\.yaml|golden/problems/)'; then
+            if ! echo "$changed" | grep -qx 'reference/assumption_change_log.md'; then
+              echo "::error::Controlled artefact changed without an assumption_change_log.md entry."
               exit 1
             fi
           fi

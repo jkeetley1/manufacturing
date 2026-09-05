@@ -1,10 +1,10 @@
 # Controlled artefacts — Auditor approval required.
 # Replace the handles below with real GitHub usernames or @org/team names.
 
-/assumptions/          @AUDITOR-HANDLE
-/reference_ranges/     @AUDITOR-HANDLE
-/golden_problems/      @AUDITOR-HANDLE
-/CHANGELOG.md          @AUDITOR-HANDLE
+/reference/controlled_assumptions.yaml   @AUDITOR-HANDLE
+/reference/reference_ranges.yaml        @AUDITOR-HANDLE
+/golden/problems/                       @AUDITOR-HANDLE
+/reference/assumption_change_log.md      @AUDITOR-HANDLE
 
 # Role prompts and rules — Scientist and Auditor jointly.
 /SPEC.md               @SCIENTIST-HANDLE @AUDITOR-HANDLE

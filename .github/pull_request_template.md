@@ -13,7 +13,7 @@ Pick the packet template for your role by appending to the PR URL:
 
 ## Controlled artefacts touched?
 - [ ] No
-- [ ] Yes — `CHANGELOG.md` entry added and Auditor requested as reviewer
+- [ ] Yes — `reference/assumption_change_log.md` entry added and Auditor requested as reviewer
 
 ## Common-rules checklist (00_common_rules)
 - [ ] Mathematics written as mathematics, not as file names

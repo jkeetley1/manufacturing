@@ -12,11 +12,11 @@ Controlled repository for the agent team defined in `SPEC.md`.
 | `assumptions/` | Controlled assumptions | **yes — Auditor sign-off** |
 | `reference_ranges/` | Controlled reference ranges | **yes — Auditor sign-off** |
 | `golden_problems/` | Golden problems and expected results | **yes — Auditor sign-off** |
-| `CHANGELOG.md` | Every change to a controlled artefact needs an entry | **yes** |
+| `reference/assumption_change_log.md` | Every change to a controlled artefact needs an entry | **yes** |
 | `tools/` | CI scripts (golden-problem runner) | no |
 
 ## Rules enforced by this repo
 1. `main` is protected: pull requests only, one approval, green CI.
-2. Any change under `assumptions/`, `reference_ranges/` or `golden_problems/` requires Auditor approval (CODEOWNERS) and a `CHANGELOG.md` entry (CI check).
+2. Any change under `assumptions/`, `reference_ranges/` or `golden_problems/` requires Auditor approval (CODEOWNERS) and a `reference/assumption_change_log.md` entry (CI check).
 3. The Auditor files an *Auditor Expectation* issue **before** reading the Engineer change packet.
 4. Golden problems run on every pull request; any result outside its reference range fails the build.
