@@ -1,0 +1,27 @@
+task_id: OPT-201
+title: Two-echelon network flows with opening lead-times
+source: Product direction 2026-09-05 (JK); practitioner gap identified in D02 demo notes
+business_requirement: >
+  Price plant->DC and DC->market freight separately (real network studies are two-echelon),
+  and respect construction lead-times: capacity committed in period t is operational at t+L.
+expected_behaviour: >
+  Existing single-echelon problems (G01-G20) solve unchanged. New problems with DCs route
+  flow through them with both legs priced; capex is discounted at commitment; no capacity
+  is operational before its lead time allows.
+spec_version: 2.0-draft
+mathematical_requirement: |
+  See packets/MSP-OPT-201.md sections 5-6 (DCBalanceIn/Out, Capacity on Thru,
+  LeadOpen/LeadExp, capex at DF[c(s,t)]).
+acceptance_tests:
+  - golden_problem: G21 (two-echelon selection, 11,500)
+  - golden_problem: G22 (DC capacity split, 11,540)
+  - golden_problem: G23 (infeasible, diagnosis 'exceeds')
+  - golden_problem: G24 (lead time capex timing, 10,636.3636)
+  - golden_problem: G25 (infeasible, diagnosis mentions lead time)
+  - golden_problem: G26 (direct arc, 11,200)
+  - regression: G01-G20 unchanged, 28 existing tests still pass
+material: true
+requires_human_decision:
+  - GATE 1 approval of Spec 2.0
+  - inter-period DC storage out of scope (recommend yes)
+  - construction-period fixed cost out of scope (recommend yes)
