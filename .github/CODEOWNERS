@@ -1,0 +1,16 @@
+# Controlled artefacts — Auditor approval required.
+# Replace the handles below with real GitHub usernames or @org/team names.
+
+/assumptions/          @AUDITOR-HANDLE
+/reference_ranges/     @AUDITOR-HANDLE
+/golden_problems/      @AUDITOR-HANDLE
+/CHANGELOG.md          @AUDITOR-HANDLE
+
+# Role prompts and rules — Scientist and Auditor jointly.
+/SPEC.md               @SCIENTIST-HANDLE @AUDITOR-HANDLE
+/00_common_rules.md    @SCIENTIST-HANDLE @AUDITOR-HANDLE
+/agents/               @SCIENTIST-HANDLE @AUDITOR-HANDLE
+/templates/            @SCIENTIST-HANDLE @AUDITOR-HANDLE
+
+# Repository controls — whoever owns the repo.
+/.github/              @jkeetley1
